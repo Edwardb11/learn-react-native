@@ -5,6 +5,8 @@ import {
   getDocs,
   getDoc,
   doc,
+  deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
@@ -58,5 +60,23 @@ export const getUserById = async (userId) => {
     }
   } catch (error) {
     console.error("Error al obtener el documento: ", error);
+  }
+};
+
+export const deleteUser = async (userId) => {
+  try {
+    await deleteDoc(doc(db, "user", userId));
+    alert("User deleted");
+  } catch (error) {
+    console.error("Error al eliminar el documento: ", error);
+  }
+};
+
+export const updateUser = async (userId, user) => {
+  try {
+    await updateDoc(doc(db, "user", userId), user);
+    alert("User updated");
+  } catch (error) {
+    console.error("Error al actualizar el documento: ", error);
   }
 };

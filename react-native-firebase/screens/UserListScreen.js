@@ -14,7 +14,7 @@ const UserListScreen = (props) => {
     };
 
     fetchData();
-  }, []);
+  }, [listUser()]);
   return (
     <ScrollView>
       <Button
