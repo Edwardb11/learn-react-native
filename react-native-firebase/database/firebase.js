@@ -1,4 +1,11 @@
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -39,4 +46,17 @@ export const listUser = async () => {
   }
   console.log(users);
   return users;
+};
+
+export const getUserById = async (userId) => {
+  try {
+    const docRef = await getDoc(doc(db, "user", userId));
+    if (docRef.exists()) {
+      return docRef.data();
+    } else {
+      alert("User not found");
+    }
+  } catch (error) {
+    console.error("Error al obtener el documento: ", error);
+  }
 };

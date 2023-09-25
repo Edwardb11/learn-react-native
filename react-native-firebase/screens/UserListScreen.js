@@ -18,12 +18,19 @@ const UserListScreen = (props) => {
   return (
     <ScrollView>
       <Button
-        onPress={() => props.navigation.navigate("CreateUserScreen")}
+        onPress={() => props.navigation.navigate("CreateUser")}
         title="Create User"
       />
       {users.map((user) => {
         return (
-          <ListItem key={user.id} bottomDivider onPress={() => alert(user.id)}>
+          <ListItem
+            key={user.id}
+            bottomDivider
+            onPress={() => {
+              props.navigation.navigate("UserDetails", {
+                userId: user.id,
+              });
+            }}>
             <ListItem.Chevron />
             <Avatar
               source={{
