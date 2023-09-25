@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -24,4 +24,19 @@ export const AddUser = async (name, email, phone) => {
   } catch (error) {
     console.error("Error al agregar el documento: ", error);
   }
+};
+
+export const listUser = async () => {
+  const users = [];
+  try {
+    const querySnapshot = await getDocs(collection(db, "user"));
+    querySnapshot.forEach((doc) => {
+      const { name, email, phone } = doc.data();
+      users.push({ id: doc.id, name, email, phone });
+    });
+  } catch (error) {
+    console.error("Error al listar usuarios: ", error);
+  }
+  console.log(users);
+  return users;
 };

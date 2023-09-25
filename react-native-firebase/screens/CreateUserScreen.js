@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, ScrollView, TextInput, Button } from "react-native";
 import db, { AddUser } from "../database/firebase";
-const CreateUserScreen = () => {
+const CreateUserScreen = (props) => {
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -21,7 +21,7 @@ const CreateUserScreen = () => {
       alert("Please provide a phone");
     } else {
       AddUser(state.name, state.email, state.phone);
-      alert("User saved successfully");
+      props.navigation.navigate("UserList");
     }
   };
   return (
