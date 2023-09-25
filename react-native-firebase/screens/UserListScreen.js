@@ -7,12 +7,11 @@ import { Avatar, ListItem } from "react-native-elements";
 const UserListScreen = (props) => {
   const [users, setUsers] = useState([]);
 
+  const fetchData = async () => {
+    const data = await listUser();
+    setUsers(data);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await listUser();
-      setUsers(data);
-    };
-
     fetchData();
   }, [listUser()]);
   return (

@@ -102,7 +102,7 @@ const UserDetailsScreen = (props) => {
           onPress={() => openConfirmationAlert()}
         />
       </View>
-      <View>
+      <View style={styles.btn}>
         <Button title="Update" color="#19AC52" onPress={() => updateUsers()} />
       </View>
     </ScrollView>
